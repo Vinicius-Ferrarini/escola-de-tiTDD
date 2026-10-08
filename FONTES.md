@@ -15,7 +15,7 @@
 > como fonte declarada.
 
 | # | URL | O que foi consultado | Onde aparece no entregável |
-| --- | --- | --- | --- |
+ | 1 || https://www.google.com/search?q=regex+pra+placa+de+carro+mercosul&oq=regex+pra+placa+de+carro+mercosul&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTEzNDMyajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8 | Regex pra placa do carro  | spec.md no UC01
 | — | | | |
 
 *(Ex.: `https://docs.oracle.com/...` → sintaxe de `Optional` → `plan.md` na
