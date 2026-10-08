@@ -11,6 +11,6 @@
 6. Parâmetros fixos da variante: `TARIFA_HORA_CENTAVOS=450`, `FRACAO_MINUTOS=15`, `TETO_DIARIO_CENTAVOS=8000`, `TOLERANCIA_MINUTOS=15`. Nenhuma variável de ambiente é obrigatória.
 7. O servidor deve subir em `0.0.0.0`, porta **8002**. O projeto deve ter `Containerfile`, `requirements.txt` e `README.md`.
 8. Testes com pytest; cada caso do tests.md vira uma função de teste. Nunca alterar teste para fazê-lo passar.
-9. Todo o código fica em `app/`, seguindo a PEP 8, exceto pelas respostas da api que deve sempre ser em camelCase formato json
+9. Todo o código fica em `app/`, seguindo a PEP 8. Campos JSON em snake_case, exatamente como no spec.md.
 10. Todo erro deve retornar o corpo `{"erro": "<codigo>"}`: 422 para formato inválido (placa, entrada, data), 404 para bilhete inexistente, 409 para conflito de estado. O handler padrão do FastAPI (`{"detail": ...}`) deve ser substituído.
 11. Validação de formato (422) sempre vem antes de regra de negócio (409). O exemplo `{"id": 7, "valor": 12.50}` contradiz o contrato e nunca deve ser seguido.
