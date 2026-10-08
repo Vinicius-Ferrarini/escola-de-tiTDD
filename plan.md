@@ -32,7 +32,10 @@ README.md           # como rodar local, em container e como testar
 7. **Status** em português: `aberto`, `encerrado`, `cancelado`. Cancelar não gera `saida` nem `valor_centavos`.
 8. **Ordenação** (ativos e histórico): `entrada` decrescente e, em empate, `id` decrescente.
 9. **Relatório**: considera os bilhetes encerrados cuja `saida` cai na data (fuso -03:00). `tempo_medio_minutos = (2*soma + n) // (2*n)`, que arredonda 0,5 para cima; sem bilhetes, o resultado é 0. Data fora de `AAAA-MM-DD` retorna 422 `data_invalida`.
-10. **Porta 8002** (PORTA_SERVICO), porque a suíte chama `http://localhost:8002`.
+10. **Porta 8080 dentro do container**, porque a suíte executa `docker run -p 8002:8080` (contrato: `porta_interna` 8080, `PORTA_SERVICO` 8002).
+11. **`GET /healthz`** → 200 `{"status": "ok"}`, porque a suíte aguarda essa rota antes de começar.
+12. **Lock global** em abrir, encerrar e cancelar, porque requisições simultâneas não podem duplicar id nem abrir duas vezes a mesma placa.
+13. **Versões fixas** no `requirements.txt` e lint com `ruff`, pois o SDLC do código gerado é avaliado.
 
 ## Containerfile
 
