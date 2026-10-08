@@ -15,8 +15,8 @@
 > como fonte declarada.
 
 | # | URL | O que foi consultado | Onde aparece no entregável |
- | 1 || https://www.google.com/search?q=regex+pra+placa+de+carro+mercosul&oq=regex+pra+placa+de+carro+mercosul&gs_lcrp=EgZjaHJvbWUyBggAEEUYOdIBCTEzNDMyajBqN6gCALACAA&sourceid=chrome&source=chrome.ob&ie=UTF-8 | Regex pra placa do carro  | spec.md no UC01
-| — | | | |
+| --- | --- | --- | --- |
+| 1 | https://www.google.com/search?q=regex+pra+placa+de+carro+mercosul | Regex da placa Mercosul | spec.md, UC1 |
 
 *(Ex.: `https://docs.oracle.com/...` → sintaxe de `Optional` → `plan.md` na
 seção de decisões. Esse link é ILUSTRATIVO — fora de linha numerada não
@@ -38,7 +38,7 @@ conta. Se nenhum site foi consultado, escreva: **"Nenhum site consultado."**)*
 
 | # | Link público da conversa | Onde o conteúdo foi usado |
 | --- | --- | --- |
-| — | | |
+| 1 | https://claude.ai/share/f358262c-d3e7-45e8-8e65-c6f2e76d06ba | Regex da placa e critérios de aceite (spec.md, UC1 a UC8); análise do repositório e checklist do critério E |
 
 *(Se nenhuma IA foi utilizada, escreva: **"Nenhuma IA utilizada."**)*
 
