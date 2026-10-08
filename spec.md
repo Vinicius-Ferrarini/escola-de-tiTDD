@@ -40,10 +40,8 @@ Regras de valor:
 	
 ### UC4 — Relatório diário
 `GET /relatorios/diario?data=AAAA-MM-DD` 
-→ **200**:```json
-{"data": "2026-10-05", "total_bilhetes": 12,
- "faturamento_centavos": 8400, "tempo_medio_minutos": 47}
-```
+→ **200**:{"data": "2026-10-05", "total_bilhetes": 12, "faturamento_centavos": 8400, "tempo_medio_minutos": 47}
+
 `tempo_medio_minutos` considera apenas bilhetes encerrados no dia, arredondando
 **0,5 para cima**.
 - Critérios de aceite:
