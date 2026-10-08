@@ -38,7 +38,7 @@ conta. Se nenhum site foi consultado, escreva: **"Nenhum site consultado."**)*
 
 | # | Link público da conversa | Onde o conteúdo foi usado |
 | --- | --- | --- |
-| 1 | https://claude.ai/share/f358262c-d3e7-45e8-8e65-c6f2e76d06ba | Regex da placa e critérios de aceite (spec.md, UC1 a UC8); análise do repositório e checklist do critério E |
+| 1 | https://claude.ai/share/f358262c-d3e7-45e8-8e65-c6f2e76d06ba | Regex da placa e critérios de aceite (spec.md, UC1 a UC8); análise do repositório e checklist do critério ; constitution.md; plan.md; tests.md; tasks.md |
 
 *(Se nenhuma IA foi utilizada, escreva: **"Nenhuma IA utilizada."**)*
 

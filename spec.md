@@ -1,5 +1,5 @@
 ---
-# Spec — Sistema de Reservas de Quadras
+# Spec — Zona Azul Digital
 
 
 ## Casos de uso
@@ -12,8 +12,8 @@
 - O body aceita **`entrada` opcional** (ISO-8601 com fuso): quando presente, o bilhete abre naquele instante em vez de "agora".
 - Único valor obrigatório é placa.
 - Critérios de aceite:
-	- Quando `placa` for diferente de 3 letras , 1 número , 1 letra , 2 letras,REGEX `^[A-Z]{3}[0-9][A-Z][0-9]{2}$`, retornar erro 409
-	- Não permitir abrir 2 bilhetes por 
+	- Quando `placa` estiver ausente ou fora de `^[A-Z0-9]{7}$`, retornar 422 `{"erro": "placa_invalida"}`.
+	- - Dada a placa ABC1D23 com bilhete aberto, quando faço POST /bilhetes de novo, então recebo 409. 
 	
 
 ### UC2 — Encerrar bilhete
@@ -29,13 +29,13 @@ Regras de valor:
 - aplica-se o **teto diário**: `valor_centavos` nunca supera `TETO_DIARIO_CENTAVOS`;
 - valor sempre em **centavos, inteiro** — a API nunca retorna ponto flutuante.[^por-que-centavos]
 - Critérios de aceite:
-	- Dada uma permanência de 300 min (20 frações = 5000), quando encerro, então o valor é 5000. Esse é o caso de bater exatamente no teto
+	- Dada uma permanência de 1066 min (72 frações = 8100), quando encerro, então `valor_centavos` é 8000 (teto).
 
 ### UC3 — Listar ativos
 `GET /bilhetes/ativos` 
 → **200** com array dos bilhetes abertos, mais recentes primeiro.
 - Critérios de aceite:
-	- Dados os bilhetes abertos A (entrada 10:00), B (10:30) e C (11:00)
+	- Dados os bilhetes abertos A (10:00), B (10:30) e C (11:00), quando faço GET /bilhetes/ativos, então recebo 200 na ordem C, B, A.
 	
 	
 ### UC4 — Relatório diário
@@ -46,7 +46,7 @@ Regras de valor:
 **0,5 para cima**.
 - Critérios de aceite:
 	- Listar todos os bilhetes encerrados do dia
-	- Se digitar data errada retornar erro 404
+	- Quando `data` não estiver no formato AAAA-MM-DD, retornar 422 `{"erro": "data_invalida"}`.
 
 
 ### UC5 — Cancelar bilhete
@@ -62,18 +62,18 @@ nem `valor_centavos`).
 placa (qualquer status), mais recentes primeiro. Placa que nunca estacionou →
 array vazio.
 - Critérios de aceite:
-	- Se tentar puxar histórico de alguma placa que nunca estacionou deve retornar 409
+	- Quando a placa nunca estacionou, retornar 200 com array vazio [].
 
 ### UC7 — Tolerância gratuita
 Os primeiros `TOLERANCIA_MINUTOS` de um bilhete são **grátis**: duração ≤
 tolerância → `valor_centavos: 0`. Passou da tolerância (mesmo por 1 minuto) →
 cobra **integral desde o primeiro minuto** — a tolerância **não** é descontada.
 - Critérios de aceite:
-	- Quando duração ≤ tolerância , deve retornar grátis
+	- Com 15 min, `valor_centavos` é 0; com 16 min, é 225 (cobrado desde o primeiro minuto).
 
 ### UC8 — Uma vaga por placa
 `POST /bilhetes` para placa que já tem bilhete **aberto** → **409**
 `{"erro": "bilhete_em_aberto"}`. Após encerrar ou cancelar, a placa volta a
 poder abrir.
 - Critérios de aceite:
-	- Quando tento fazer novamente o `POST /bilhetes` com uma placa que está ativa retornar erro 400
+	- Quando faço POST /bilhetes de novo com uma placa que está ativa, retornar 409 `{"erro": "bilhete_em_aberto"}`.
